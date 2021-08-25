@@ -8,7 +8,7 @@
   </mat-form-field>
   <mat-form-field>
     <mat-label>Password</mat-label>
-    <input matInput [(ngModel)]="password" #passwordControl="ngModel">
+    <input type="password" matInput [(ngModel)]="password" #passwordControl="ngModel">
     <mat-error *ngIf="form.submitted && passwordControl.hasError('required')">
       Password is required
     </mat-error>
