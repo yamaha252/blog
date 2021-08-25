@@ -1,0 +1,5 @@
+mutation articleAdd($article: ArticleInput!) {
+  articleAdd(article: $article) {
+    ...articleShort
+  }
+}

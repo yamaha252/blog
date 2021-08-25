@@ -1,19 +1,23 @@
+fragment articleShort on Article {
+  id
+  date
+  title
+  imageUrl
+  text
+  author {
+    id
+    name
+  }
+  comments {
+    totalCount
+  }
+}
+
 query articles($limit: Int = 20 $offset: Int = 0) {
   articles(limit: $limit offset: $offset) {
     totalCount
     items {
-      id
-      date
-      title
-      imageUrl
-      text
-      author {
-        id
-        name
-      }
-      comments {
-        totalCount
-      }
+      ...articleShort
     }
   }
 }

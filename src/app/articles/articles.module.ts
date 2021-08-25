@@ -5,7 +5,7 @@ import {ArticlesComponent} from './articles.component';
 import {ArticlesResolver} from './articles.resolver';
 import {NgxsModule} from '@ngxs/store';
 import {ArticlesState} from './articles.state';
-import { NumbersPipe } from './numbers.pipe';
+import {NumbersPipe} from './numbers.pipe';
 
 const routes: Routes = [
   {
@@ -14,6 +14,10 @@ const routes: Routes = [
     resolve: {
       articles: ArticlesResolver,
     }
+  },
+  {
+    path: 'create',
+    loadChildren: () => import('./article-create/article-create.module').then(m => m.ArticleCreateModule),
   },
   {
     path: ':articleId',
@@ -25,7 +29,7 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     ArticlesComponent,
-    NumbersPipe
+    NumbersPipe,
   ],
   imports: [
     CommonModule,

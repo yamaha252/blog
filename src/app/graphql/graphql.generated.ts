@@ -136,6 +136,24 @@ export type QueryAuthorArgs = {
   id: Scalars['ID'];
 };
 
+export type ArticleAddMutationVariables = Exact<{
+  article: ArticleInput;
+}>;
+
+export type ArticleAddMutation = {
+  __typename?: 'Mutation';
+  articleAdd: {
+    __typename?: 'Article';
+    id: string;
+    date: any;
+    title: string;
+    imageUrl: string;
+    text: string;
+    author: { __typename?: 'Author'; id: string; name: string };
+    comments: { __typename?: 'Comments'; totalCount: number };
+  };
+};
+
 export type ArticleCommentsFragment = {
   __typename?: 'Comments';
   totalCount: number;
@@ -198,6 +216,17 @@ export type ArticleCommentsQuery = {
       }>;
     };
   };
+};
+
+export type ArticleShortFragment = {
+  __typename?: 'Article';
+  id: string;
+  date: any;
+  title: string;
+  imageUrl: string;
+  text: string;
+  author: { __typename?: 'Author'; id: string; name: string };
+  comments: { __typename?: 'Comments'; totalCount: number };
 };
 
 export type ArticlesQueryVariables = Exact<{
@@ -304,6 +333,22 @@ export const ArticleCommentsFragmentDoc = gql`
     }
   }
 `;
+export const ArticleShortFragmentDoc = gql`
+  fragment articleShort on Article {
+    id
+    date
+    title
+    imageUrl
+    text
+    author {
+      id
+      name
+    }
+    comments {
+      totalCount
+    }
+  }
+`;
 export const AuthorArticlesFragmentDoc = gql`
   fragment authorArticles on Articles {
     totalCount
@@ -314,6 +359,28 @@ export const AuthorArticlesFragmentDoc = gql`
     }
   }
 `;
+export const ArticleAddDocument = gql`
+  mutation articleAdd($article: ArticleInput!) {
+    articleAdd(article: $article) {
+      ...articleShort
+    }
+  }
+  ${ArticleShortFragmentDoc}
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class ArticleAddGQL extends Apollo.Mutation<
+  ArticleAddMutation,
+  ArticleAddMutationVariables
+> {
+  document = ArticleAddDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
 export const ArticleDocument = gql`
   query article($id: ID!) {
     article(id: $id) {
@@ -376,21 +443,11 @@ export const ArticlesDocument = gql`
     articles(limit: $limit, offset: $offset) {
       totalCount
       items {
-        id
-        date
-        title
-        imageUrl
-        text
-        author {
-          id
-          name
-        }
-        comments {
-          totalCount
-        }
+        ...articleShort
       }
     }
   }
+  ${ArticleShortFragmentDoc}
 `;
 
 @Injectable({

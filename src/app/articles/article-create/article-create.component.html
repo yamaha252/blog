@@ -1,0 +1,31 @@
+<form #form="ngForm" (ngSubmit)="form.valid && submit()">
+  <mat-form-field>
+    <mat-label>Title</mat-label>
+    <input matInput [(ngModel)]="title" #titleControl="ngModel" required>
+    <mat-error *ngIf="form.submitted && titleControl.hasError('required')">
+      Title is required
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Image URL</mat-label>
+    <input matInput [(ngModel)]="imageUrl" #imageControl="ngModel">
+    <mat-error *ngIf="form.submitted && imageControl.hasError('required')">
+      Image is required
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Text</mat-label>
+    <textarea matInput [(ngModel)]="text" #textControl="ngModel"></textarea>
+    <mat-error *ngIf="form.submitted && textControl.hasError('required')">
+      Text is required
+    </mat-error>
+  </mat-form-field>
+
+  <mat-error *ngIf="form.submitted && form.hasError('backend')">
+    Something went wrong
+  </mat-error>
+
+  <button type="submit" mat-flat-button color="primary">Create</button>
+</form>
