@@ -20,9 +20,9 @@ const routes: Routes = [
     loadChildren: () => import('./article-create/article-create.module').then(m => m.ArticleCreateModule),
   },
   {
-    path: ':articleId',
+    path: 'article',
     loadChildren: () => import('./article/article.module').then(m => m.ArticleModule),
-  }
+  },
 ];
 
 

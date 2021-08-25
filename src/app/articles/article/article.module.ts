@@ -3,8 +3,8 @@ import {CommonModule} from '@angular/common';
 import {RouterModule} from '@angular/router';
 import {ArticleComponent} from './article.component';
 import {ArticleResolver} from './article.resolver';
-import { ArticleCommentsComponent } from './article-comments/article-comments.component';
-import { CommentRemoveDialogComponent } from './article-comments/comment-remove-dialog/comment-remove-dialog.component';
+import {ArticleCommentsComponent} from './article-comments/article-comments.component';
+import {CommentRemoveDialogComponent} from './article-comments/comment-remove-dialog/comment-remove-dialog.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import {NgxsModule} from '@ngxs/store';
 import {ArticleState} from './article.state';
@@ -21,7 +21,7 @@ import {ArticleState} from './article.state';
     NgxsModule.forFeature([ArticleState]),
     RouterModule.forChild([
       {
-        path: '',
+        path: ':articleId',
         component: ArticleComponent,
         resolve: {
           article: ArticleResolver,
