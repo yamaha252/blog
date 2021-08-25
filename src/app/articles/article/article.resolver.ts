@@ -6,11 +6,10 @@ import {
 } from '@angular/router';
 import {ArticleStateModel} from './article.state';
 import {Store} from '@ngxs/store';
-import {ArticleModule} from './article.module';
 import {ArticleAction} from './article.actions';
 
 @Injectable({
-  providedIn: ArticleModule,
+  providedIn: 'root',
 })
 export class ArticleResolver implements Resolve<ArticleStateModel> {
   constructor(private store: Store) {
