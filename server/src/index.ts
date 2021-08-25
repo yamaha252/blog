@@ -6,9 +6,22 @@ import helmet from 'helmet';
 import 'graphql-import-node';
 import * as typeDefs from '../../schema.graphql';
 import {createServer} from 'http';
-import {Resolvers} from './graphql.generated';
+import {ArticleModel, articles, articleToType, authors, comments} from './data';
 
-const resolvers: Resolvers = {
+const resolvers = {
+  Query: {
+    articles() {
+      const articlesResult = articles.map(article => articleToType(article));
+      return {
+        totalCount: articlesResult.length,
+        items: articlesResult,
+      }
+    },
+    article(parent: any, {id}: {id: string}) {
+      const article = articles.find(a => a.id === id) as ArticleModel;
+      return articleToType(article);
+    },
+  }
 };
 
 const schema = makeExecutableSchema({
