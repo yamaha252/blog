@@ -1,0 +1,34 @@
+fragment articleComments on Comments {
+  totalCount
+  items {
+    id
+    date
+    name
+    text
+  }
+}
+
+query article($id: ID!) {
+  article(id: $id) {
+    id
+    date
+    title
+    imageUrl
+    text
+    author {
+      id
+      name
+    }
+    comments {
+      ...articleComments
+    }
+  }
+}
+
+query articleComments($id: ID! $limit: Int $offset: Int) {
+  article(id: $id) {
+    comments(limit: $limit, offset: $offset) {
+      ...articleComments
+    }
+  }
+}

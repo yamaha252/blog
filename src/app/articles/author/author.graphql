@@ -1,0 +1,25 @@
+fragment authorArticles on Articles {
+  totalCount
+  items {
+    id
+    date
+    title
+  }
+}
+
+query author($id: ID!) {
+  author(id: $id) {
+    name
+    articles {
+      ...authorArticles
+    }
+  }
+}
+
+query authorArticles($id: ID! $limit: Int $offset: Int) {
+  author(id: $id) {
+    articles(limit: $limit offset: $offset) {
+      ...authorArticles
+    }
+  }
+}
