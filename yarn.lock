@@ -1707,6 +1707,13 @@
   resolved "https://registry.yarnpkg.com/@ngtools/webpack/-/webpack-12.2.2.tgz#485098f90b88fc28f5b788d69aaa3e9263e405e5"
   integrity sha512-GmzdsYtnuTDVZlUmWteT752K54JohjeID/o03Tau/BlnBukzh2m817z57bZS1nkSD2cPD51lg9oeRbZTkkd9LA==
 
+"@ngxs-labs/data@^6.2.0":
+  version "6.2.0"
+  resolved "https://registry.yarnpkg.com/@ngxs-labs/data/-/data-6.2.0.tgz#a54f0bc65d307b38eba7e68976fe1a5997d377ba"
+  integrity sha512-aopBCEH+C+7NPOWxDNPzv/65EC/UPp0a8zyPBdAOJMYO944VYJIDWbCc8Nle8H3qqUT4h00u2+pUVbRAOuxX+Q==
+  dependencies:
+    tslib "^2.1.0"
+
 "@ngxs/devtools-plugin@^3.3.2":
   version "3.7.2"
   resolved "https://registry.yarnpkg.com/@ngxs/devtools-plugin/-/devtools-plugin-3.7.2.tgz#995424e5faf48df55a1b54b9e1b36ce9c47c1d52"
