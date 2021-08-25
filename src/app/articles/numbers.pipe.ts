@@ -4,9 +4,7 @@ import {Pipe, PipeTransform} from '@angular/core';
   name: 'numbers'
 })
 export class NumbersPipe implements PipeTransform {
-
-  transform(count: number): number[] {
-    return Array(5).fill(0).map((_, i) => i++);
+  transform(count: number | null): number[] {
+    return Array(count || 0).fill(0).map((_, i) => ++i);
   }
-
 }
