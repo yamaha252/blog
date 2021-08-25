@@ -1,1 +1,22 @@
-<p>login works!</p>
+<form #form="ngForm" (ngSubmit)="form.valid && submit()">
+  <mat-form-field>
+    <mat-label>Login</mat-label>
+    <input matInput [(ngModel)]="login" #loginControl="ngModel" required>
+    <mat-error *ngIf="form.submitted && loginControl.hasError('required')">
+      Login is required
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Password</mat-label>
+    <input matInput [(ngModel)]="password" #passwordControl="ngModel">
+    <mat-error *ngIf="form.submitted && passwordControl.hasError('required')">
+      Password is required
+    </mat-error>
+  </mat-form-field>
+
+  <mat-error *ngIf="form.submitted && form.hasError('backend')">
+    Wrong login or password
+  </mat-error>
+
+  <button type="submit" mat-flat-button color="primary">Login</button>
+</form>

@@ -4,6 +4,9 @@ import {LoginComponent} from './login/login.component';
 import {NgxsModule} from '@ngxs/store';
 import {AuthState} from './auth.state';
 import {RouterModule} from '@angular/router';
+import {MatInputModule} from '@angular/material/input';
+import {FormsModule} from '@angular/forms';
+import {MatButtonModule} from '@angular/material/button';
 
 
 @NgModule({
@@ -18,7 +21,10 @@ import {RouterModule} from '@angular/router';
         path: 'login',
         component: LoginComponent,
       }
-    ])
+    ]),
+    MatInputModule,
+    FormsModule,
+    MatButtonModule
   ]
 })
 export class AuthModule {
