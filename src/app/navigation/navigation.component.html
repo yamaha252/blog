@@ -1,0 +1,19 @@
+<nav>
+  <a href="#" routerLink="/">Articles</a>
+
+  <ng-container *ngIf="isAuthenticated$ | async">
+    <a href="#" routerLink="articles/create">Create</a>
+  </ng-container>
+
+  <a href="#" routerLink="contacts">Contacts</a>
+
+  <span>
+    <ng-container *ngIf="isAuthenticated$ | async else logoutTemplate">
+      <a href="#" routerLink="login">Login</a>
+    </ng-container>
+
+    <ng-template #logoutTemplate>
+      <a href="#" routerLink="/" (click)="logout()">Logout</a>
+    </ng-template>
+  </span>
+</nav>
