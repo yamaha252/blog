@@ -22,3 +22,13 @@ generates:
       - fragment-matcher
     config:
       exportFragmentSpreadSubTypes: true
+
+  server/src/graphql.generated.ts:
+    plugins:
+      - add:
+          content: >
+            /**
+             * NOTE: THIS IS AN AUTO-GENERATED FILE. DO NOT MODIFY IT DIRECTLY.
+             */
+      - typescript
+      - typescript-resolvers
