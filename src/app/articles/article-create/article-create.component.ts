@@ -32,7 +32,11 @@ export class ArticleCreateComponent implements OnInit {
   async submit() {
     this.submitting = true;
     try {
-      await this.articleCreateService.create(this.title, this.imageUrl, this.text).toPromise();
+      await this.articleCreateService.create({
+        title: this.title,
+        imageUrl: this.imageUrl,
+        text: this.text,
+      }).toPromise();
       await this.store.dispatch(new ArticlesAction.Load()).toPromise();
       this.router.navigate(['/']);
     } catch (e) {

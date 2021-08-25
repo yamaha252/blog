@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {ArticleAddGQL} from '../../graphql/graphql.generated';
+import {ArticleAddGQL, ArticleInput} from '../../graphql/graphql.generated';
 import {map} from 'rxjs/operators';
 
 @Injectable({
@@ -10,8 +10,8 @@ export class ArticleCreateService {
   constructor(private articleAddGQL: ArticleAddGQL) {
   }
 
-  create(title: string, imageUrl: string, text: string) {
-    return this.articleAddGQL.mutate({article: {title, imageUrl, text}})
+  create(article: ArticleInput) {
+    return this.articleAddGQL.mutate({article})
       .pipe(
         map(result => result.data?.articleAdd)
       );
