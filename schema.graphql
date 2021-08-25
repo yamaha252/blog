@@ -42,7 +42,7 @@ type Article {
   title: String!
   imageUrl: String!
   text: String!
-  comments: Comments!
+  comments(limit: Int = 20 offset: Int = 0): Comments!
 }
 
 type Author {
@@ -53,11 +53,12 @@ type Author {
 
 type Comments {
   items: [Comment!]!
-  totalCount(limit: Int = 20 offset: Int = 0): Int!
+  totalCount: Int!
 }
 
 type Comment {
   id: ID!
+  date: DateTime!
   name: String!
   email: String!
   url: String!
