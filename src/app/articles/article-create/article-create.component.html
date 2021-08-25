@@ -1,27 +1,33 @@
 <form #form="ngForm" (ngSubmit)="form.valid && submit()">
-  <mat-form-field>
-    <mat-label>Title</mat-label>
-    <input matInput [(ngModel)]="title" #titleControl="ngModel" required>
-    <mat-error *ngIf="form.submitted && titleControl.hasError('required')">
-      Title is required
-    </mat-error>
-  </mat-form-field>
+  <p>
+    <mat-form-field>
+      <mat-label>Title</mat-label>
+      <input name="title" matInput [(ngModel)]="title" #titleControl="ngModel" required>
+      <mat-error *ngIf="form.submitted && titleControl.hasError('required')">
+        Title is required
+      </mat-error>
+    </mat-form-field>
+  </p>
 
-  <mat-form-field>
-    <mat-label>Image URL</mat-label>
-    <input matInput [(ngModel)]="imageUrl" #imageControl="ngModel">
-    <mat-error *ngIf="form.submitted && imageControl.hasError('required')">
-      Image is required
-    </mat-error>
-  </mat-form-field>
+  <p>
+    <mat-form-field>
+      <mat-label>Image URL</mat-label>
+      <input name="imageUrl" matInput [(ngModel)]="imageUrl" #imageControl="ngModel" required>
+      <mat-error *ngIf="form.submitted && imageControl.hasError('required')">
+        Image is required
+      </mat-error>
+    </mat-form-field>
+  </p>
 
-  <mat-form-field>
-    <mat-label>Text</mat-label>
-    <textarea matInput [(ngModel)]="text" #textControl="ngModel"></textarea>
-    <mat-error *ngIf="form.submitted && textControl.hasError('required')">
-      Text is required
-    </mat-error>
-  </mat-form-field>
+  <p>
+    <mat-form-field>
+      <mat-label>Text</mat-label>
+      <textarea name="text" matInput [(ngModel)]="text" #textControl="ngModel" required></textarea>
+      <mat-error *ngIf="form.submitted && textControl.hasError('required')">
+        Text is required
+      </mat-error>
+    </mat-form-field>
+  </p>
 
   <mat-error *ngIf="form.submitted && form.hasError('backend')">
     Something went wrong

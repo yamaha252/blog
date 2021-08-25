@@ -1,13 +1,17 @@
 <ng-container *ngIf="articles$ | async as articles">
   <h1>Articles</h1>
-  <a [routerLink]="['article', article.id]" *ngFor="let article of articles">
-    <span>{{article.date | date}} - {{article.title}}</span>
-    <span>
+  <a class="article" [routerLink]="['article', article.id]" *ngFor="let article of articles">
+    <h3>{{article.date | date}} - {{article.title}}</h3>
+    <div class="image">
       <img [src]="article.imageUrl" alt="">
-    </span>
-    <span>{{article.text}}</span>
-    <span>Author: {{article.author.name}}</span>
-    <span>Comments: {{article.comments.totalCount}}</span>
+    </div>
+    <p>
+      {{article.text}}
+    </p>
+    <div class="footer">
+      <span class="author">Author: {{article.author.name}}</span>
+      <span>Comments: {{article.comments.totalCount}}</span>
+    </div>
   </a>
   <div>
     <button type="button"
@@ -15,3 +19,4 @@
             (click)="loadPage(page)">{{page}}</button>
   </div>
 </ng-container>
+

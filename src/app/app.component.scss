@@ -1,0 +1,17 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  max-width: 600px;
+  margin: auto;
+  background: aliceblue;
+  padding: 20px 40px;
+}
+
+.content {
+  flex: 1;
+  margin-top: 20px;
+}
+
+header {
+  margin-bottom: 20px;
+}

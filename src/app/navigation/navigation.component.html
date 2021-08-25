@@ -1,15 +1,17 @@
 <nav>
-  <a href="#" routerLink="/">Articles</a>
+  <span class="menu">
+    <a href="#" routerLink="/">Articles</a>
 
-  <ng-container *ngIf="isAuthenticated$ | async">
-    <a href="#" routerLink="articles/create">Create</a>
-  </ng-container>
+    <ng-container *ngIf="isAuthenticated$ | async">
+      <a href="#" routerLink="create">Create</a>
+    </ng-container>
 
-  <a href="#" routerLink="contacts">Contacts</a>
+    <a href="#" routerLink="contacts">Contacts</a>
+  </span>
 
-  <span>
+  <span class="auth">
     <ng-container *ngIf="isAuthenticated$ | async else loginTemplate">
-      <a href="#" routerLink="/" (click)="logout()">Logout</a>
+      <a href="#" (click)="logout(); $event.preventDefault();">Logout</a>
     </ng-container>
 
     <ng-template #loginTemplate>

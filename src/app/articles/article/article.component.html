@@ -1,9 +1,11 @@
 <ng-container *ngIf="article$ | async as article">
   <h1>{{article.title}}</h1>
-  <div>{{article.date | date}}</div>
-  <div><img [src]="article.imageUrl" alt=""></div>
-  <div>{{article.text}}</div>
-  <div>Author: {{article.author.name}}</div>
+  <div class="content">
+    <div>{{article.date | date}}</div>
+    <div><img [src]="article.imageUrl" alt=""></div>
+    <div>{{article.text}}</div>
+    <div>Author: {{article.author.name}}</div>
+  </div>
 
   <app-article-comments [comments]="article.comments"></app-article-comments>
 </ng-container>

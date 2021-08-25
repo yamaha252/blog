@@ -34,7 +34,7 @@ export class ArticleState {
   @Action(ArticleAction.Load)
   async load(ctx: StateContext<ArticleStateModel>, {id}: ArticleAction.Load) {
     const article = await this.articleGQL
-      .fetch({id}, {fetchPolicy: 'cache-first'})
+      .fetch({id}, {fetchPolicy: 'no-cache'})
       .pipe(
         map(result => result.data.article),
       )

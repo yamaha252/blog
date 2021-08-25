@@ -32,7 +32,7 @@ export class ArticlesState {
 
   @Selector()
   static articles({articles}: ArticlesStateModel) {
-    return articles;
+    return [...articles].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
   }
 
   @Selector()
@@ -50,7 +50,7 @@ export class ArticlesState {
     const limit = ArticlesState.countOnPage;
     const offset = limit * (page - 1);
     const {items: articles, totalCount} = await this.articlesGQL
-      .fetch({limit, offset}, {fetchPolicy: 'cache-first'})
+      .fetch({limit, offset}, {fetchPolicy: 'no-cache'})
       .pipe(
         map(result => result.data.articles)
       ).toPromise();

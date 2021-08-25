@@ -2,6 +2,8 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {ArticleCreateService} from './article-create.service';
 import {Router} from '@angular/router';
 import {NgForm} from '@angular/forms';
+import {Store} from '@ngxs/store';
+import {ArticlesAction} from '../articles.actions';
 
 @Component({
   selector: 'app-article-create',
@@ -20,6 +22,7 @@ export class ArticleCreateComponent implements OnInit {
   submitting: boolean;
 
   constructor(private router: Router,
+              private store: Store,
               private articleCreateService: ArticleCreateService) {
   }
 
@@ -30,6 +33,7 @@ export class ArticleCreateComponent implements OnInit {
     this.submitting = true;
     try {
       await this.articleCreateService.create(this.title, this.imageUrl, this.text).toPromise();
+      await this.store.dispatch(new ArticlesAction.Load()).toPromise();
       this.router.navigate(['/']);
     } catch (e) {
       this.form.control.setErrors({

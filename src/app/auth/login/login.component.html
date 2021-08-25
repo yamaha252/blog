@@ -1,14 +1,14 @@
 <form #form="ngForm" (ngSubmit)="form.valid && submit()">
   <mat-form-field>
     <mat-label>Login</mat-label>
-    <input matInput [(ngModel)]="login" #loginControl="ngModel" required>
+    <input name="login" matInput [(ngModel)]="login" #loginControl="ngModel" required>
     <mat-error *ngIf="form.submitted && loginControl.hasError('required')">
       Login is required
     </mat-error>
   </mat-form-field>
   <mat-form-field>
     <mat-label>Password</mat-label>
-    <input type="password" matInput [(ngModel)]="password" #passwordControl="ngModel">
+    <input name="password" type="password" matInput [(ngModel)]="password" #passwordControl="ngModel">
     <mat-error *ngIf="form.submitted && passwordControl.hasError('required')">
       Password is required
     </mat-error>
