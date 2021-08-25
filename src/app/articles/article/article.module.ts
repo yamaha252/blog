@@ -6,6 +6,8 @@ import {ArticleResolver} from './article.resolver';
 import { ArticleCommentsComponent } from './article-comments/article-comments.component';
 import { CommentRemoveDialogComponent } from './article-comments/comment-remove-dialog/comment-remove-dialog.component';
 import {MatDialogModule} from '@angular/material/dialog';
+import {NgxsModule} from '@ngxs/store';
+import {ArticleState} from './article.state';
 
 
 @NgModule({
@@ -16,6 +18,7 @@ import {MatDialogModule} from '@angular/material/dialog';
   ],
   imports: [
     CommonModule,
+    NgxsModule.forFeature([ArticleState]),
     RouterModule.forChild([
       {
         path: '',
