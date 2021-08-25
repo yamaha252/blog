@@ -1,0 +1,65 @@
+
+scalar DateTime
+
+type Query {
+  articles(limit: Int = 20 offset: Int = 0): Articles!
+  article(id: ID!): Article!
+  author(id: ID!): Author!
+}
+
+type Mutation {
+  login(login: String! password: String!): AuthCredentials!
+  articleAdd(article: ArticleInput!): Article!
+  commentAdd(articleId: ID! comment: CommentInput!): Article!
+}
+
+type AuthCredentials {
+  accessToken: String!
+}
+
+input ArticleInput {
+  title: String!
+  imageUrl: String!
+  text: String!
+}
+
+input CommentInput {
+  name: String!
+  email: String!
+  url: String!
+  text: String!
+}
+
+type Articles {
+  items: [Article!]!
+  totalCount: Int!
+}
+
+type Article {
+  id: ID!
+  date: DateTime!
+  author: Author!
+  title: String!
+  imageUrl: String!
+  text: String!
+  comments: Comments!
+}
+
+type Author {
+  id: ID!
+  name: String!
+  articles(limit: Int = 20 offset: Int = 0): Articles!
+}
+
+type Comments {
+  items: [Comment!]!
+  totalCount(limit: Int = 20 offset: Int = 0): Int!
+}
+
+type Comment {
+  id: ID!
+  name: String!
+  email: String!
+  url: String!
+  text: String!
+}
