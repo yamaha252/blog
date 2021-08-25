@@ -5,6 +5,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {FormsModule} from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
+import {RouterModule} from '@angular/router';
 
 
 @NgModule({
@@ -16,7 +17,13 @@ import {MatButtonModule} from '@angular/material/button';
     MatFormFieldModule,
     FormsModule,
     MatInputModule,
-    MatButtonModule
+    MatButtonModule,
+    RouterModule.forChild([
+      {
+        path: '',
+        component: ArticleCreateComponent,
+      }
+    ])
   ]
 })
 export class ArticleCreateModule {
