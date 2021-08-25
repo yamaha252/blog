@@ -1,4 +1,4 @@
-<div class="article" *ngFor="let comment of comments.items">
+<div class="comment" *ngFor="let comment of article.comments.items">
   <div>{{comment.date | date}}</div>
   <div>{{comment.name}}</div>
   <div>{{comment.text}}</div>
@@ -7,3 +7,5 @@
     <button (click)="remove(comment.id)">Remove comment</button>
   </ng-container>
 </div>
+
+<app-comment-create [articleId]="article.id"></app-comment-create>

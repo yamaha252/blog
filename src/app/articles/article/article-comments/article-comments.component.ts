@@ -1,13 +1,13 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {ArticleComments} from '../article';
+import {Article} from '../article';
 import {Select} from '@ngxs/store';
 import {Observable} from 'rxjs';
 import {AuthState} from '../../../auth/auth.state';
 import {MatDialog} from '@angular/material/dialog';
 import {
-  CommentRemoveDialogComponent,
-  CommentRemoveDialogComponentData
-} from './comment-remove-dialog/comment-remove-dialog.component';
+  CommentDeleteDialogComponent,
+  CommentDeleteDialogComponentData
+} from './comment-delete-dialog/comment-delete-dialog.component';
 
 @Component({
   selector: 'app-article-comments',
@@ -16,7 +16,7 @@ import {
 })
 export class ArticleCommentsComponent implements OnInit {
 
-  @Input() comments: ArticleComments;
+  @Input() article: Article;
 
   @Select(AuthState.isAuthenticated)
   isAuthenticated$: Observable<boolean>;
@@ -28,7 +28,7 @@ export class ArticleCommentsComponent implements OnInit {
   }
 
   remove(commentId: string) {
-    this.dialog.open<CommentRemoveDialogComponent, CommentRemoveDialogComponentData>(CommentRemoveDialogComponent, {
+    this.dialog.open<CommentDeleteDialogComponent, CommentDeleteDialogComponentData>(CommentDeleteDialogComponent, {
       data: {commentId},
     })
   }

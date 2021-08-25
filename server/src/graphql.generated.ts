@@ -96,7 +96,7 @@ export type Mutation = {
   login: AuthCredentials;
   logout?: Maybe<Scalars['Void']>;
   articleAdd: Article;
-  commentAdd: Comment;
+  commentAdd: Article;
   commentDelete: Article;
 };
 
@@ -307,7 +307,7 @@ export type MutationResolvers<ContextType = any, ParentType extends ResolversPar
   login?: Resolver<ResolversTypes['AuthCredentials'], ParentType, ContextType, RequireFields<MutationLoginArgs, 'login' | 'password'>>;
   logout?: Resolver<Maybe<ResolversTypes['Void']>, ParentType, ContextType>;
   articleAdd?: Resolver<ResolversTypes['Article'], ParentType, ContextType, RequireFields<MutationArticleAddArgs, 'article'>>;
-  commentAdd?: Resolver<ResolversTypes['Comment'], ParentType, ContextType, RequireFields<MutationCommentAddArgs, 'articleId' | 'comment'>>;
+  commentAdd?: Resolver<ResolversTypes['Article'], ParentType, ContextType, RequireFields<MutationCommentAddArgs, 'articleId' | 'comment'>>;
   commentDelete?: Resolver<ResolversTypes['Article'], ParentType, ContextType, RequireFields<MutationCommentDeleteArgs, 'commentId'>>;
 };
 

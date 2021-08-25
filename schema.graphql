@@ -12,7 +12,7 @@ type Mutation {
   login(login: String! password: String!): AuthCredentials!
   logout: Void
   articleAdd(article: ArticleInput!): Article!
-  commentAdd(articleId: ID! comment: CommentInput!): Comment!
+  commentAdd(articleId: ID! comment: CommentInput!): Article!
   commentDelete(commentId: ID!): Article!
 }
 

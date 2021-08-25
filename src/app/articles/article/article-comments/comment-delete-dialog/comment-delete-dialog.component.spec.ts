@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CommentRemoveDialogComponent } from './comment-remove-dialog.component';
+import { CommentDeleteDialogComponent } from './comment-delete-dialog.component';
 
 describe('CommentRemoveDialogComponent', () => {
-  let component: CommentRemoveDialogComponent;
-  let fixture: ComponentFixture<CommentRemoveDialogComponent>;
+  let component: CommentDeleteDialogComponent;
+  let fixture: ComponentFixture<CommentDeleteDialogComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CommentRemoveDialogComponent ]
+      declarations: [ CommentDeleteDialogComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CommentRemoveDialogComponent);
+    fixture = TestBed.createComponent(CommentDeleteDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

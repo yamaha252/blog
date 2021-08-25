@@ -1,0 +1,44 @@
+<form #form="ngForm" (ngSubmit)="form.valid && submit()">
+  <p>
+    <mat-form-field>
+      <mat-label>Name</mat-label>
+      <input name="name" matInput [(ngModel)]="name" #nameControl="ngModel" required>
+      <mat-error *ngIf="form.submitted && nameControl.hasError('required')">
+        Name is required
+      </mat-error>
+    </mat-form-field>
+  </p>
+
+  <p>
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input name="email" type="email" matInput [(ngModel)]="email" #emailControl="ngModel" email>
+      <mat-error *ngIf="form.submitted && emailControl.hasError('email')">
+        Email is invalid
+      </mat-error>
+    </mat-form-field>
+  </p>
+
+  <p>
+    <mat-form-field>
+      <mat-label>Url</mat-label>
+      <input name="url" matInput [(ngModel)]="url">
+    </mat-form-field>
+  </p>
+
+  <p>
+    <mat-form-field>
+      <mat-label>Text</mat-label>
+      <textarea name="text" matInput [(ngModel)]="text" #textControl="ngModel" required></textarea>
+      <mat-error *ngIf="form.submitted && textControl.hasError('required')">
+        Text is required
+      </mat-error>
+    </mat-form-field>
+  </p>
+
+  <mat-error *ngIf="form.submitted && form.hasError('backend')">
+    Something went wrong
+  </mat-error>
+
+  <button type="submit" mat-flat-button color="primary">Submit</button>
+</form>

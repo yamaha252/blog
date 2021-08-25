@@ -100,7 +100,7 @@ export type Mutation = {
   login: AuthCredentials;
   logout?: Maybe<Scalars['Void']>;
   articleAdd: Article;
-  commentAdd: Comment;
+  commentAdd: Article;
   commentDelete: Article;
 };
 
@@ -210,6 +210,30 @@ export type ArticleCommentsQuery = {
   __typename?: 'Query';
   article: {
     __typename?: 'Article';
+    comments: {
+      __typename?: 'Comments';
+      totalCount: number;
+      items: Array<{
+        __typename?: 'Comment';
+        id: string;
+        date: any;
+        name: string;
+        text: string;
+      }>;
+    };
+  };
+};
+
+export type CommentAddMutationVariables = Exact<{
+  articleId: Scalars['ID'];
+  comment: CommentInput;
+}>;
+
+export type CommentAddMutation = {
+  __typename?: 'Mutation';
+  commentAdd: {
+    __typename?: 'Article';
+    id: string;
     comments: {
       __typename?: 'Comments';
       totalCount: number;
@@ -462,6 +486,31 @@ export class ArticleCommentsGQL extends Apollo.Query<
   ArticleCommentsQueryVariables
 > {
   document = ArticleCommentsDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
+export const CommentAddDocument = gql`
+  mutation commentAdd($articleId: ID!, $comment: CommentInput!) {
+    commentAdd(articleId: $articleId, comment: $comment) {
+      id
+      comments {
+        ...articleComments
+      }
+    }
+  }
+  ${ArticleCommentsFragmentDoc}
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class CommentAddGQL extends Apollo.Mutation<
+  CommentAddMutation,
+  CommentAddMutationVariables
+> {
+  document = CommentAddDocument;
 
   constructor(apollo: Apollo.Apollo) {
     super(apollo);

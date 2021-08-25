@@ -33,6 +33,15 @@ query articleComments($id: ID! $limit: Int $offset: Int) {
   }
 }
 
+mutation commentAdd($articleId: ID! $comment: CommentInput!) {
+  commentAdd(articleId: $articleId comment: $comment) {
+    id
+    comments {
+      ...articleComments
+    }
+  }
+}
+
 mutation commentDelete($commentId: ID!) {
   commentDelete(commentId: $commentId) {
     id

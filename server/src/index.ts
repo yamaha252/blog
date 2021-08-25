@@ -6,7 +6,7 @@ import helmet from 'helmet';
 import 'graphql-import-node';
 import * as typeDefs from '../../schema.graphql';
 import {createServer} from 'http';
-import {ArticleModel, articles, ArticleType, authors, CommentModel, comments, CommentType} from './data';
+import {ArticleModel, articles, ArticleType, authors, CommentModel, comments} from './data';
 import {Resolvers} from './graphql.generated';
 import jwt from 'jsonwebtoken';
 
@@ -62,6 +62,10 @@ const resolvers: Resolvers = {
     },
 
     commentAdd(parent, {articleId, comment}) {
+      const article = articles.find(a => a.id === articleId);
+      if (!article) {
+        throw new Error('Article not found');
+      }
       const commentNew: CommentModel = {
         id: ID(),
         articleId,
@@ -72,7 +76,7 @@ const resolvers: Resolvers = {
         text: comment.text,
       };
       comments.push(commentNew);
-      return new CommentType(commentNew);
+      return new ArticleType(article);
     },
 
     commentDelete(parent, {commentId}) {
