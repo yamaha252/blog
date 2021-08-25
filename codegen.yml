@@ -1,0 +1,24 @@
+overwrite: true
+schema: schema.graphql
+documents: src/**/*.graphql
+generates:
+  src/app/graphql/graphql.generated.ts:
+    hooks:
+      afterOneFileWrite:
+        - prettier --write
+        - tslint --project tsconfig.json --fix
+    plugins:
+      - add:
+          content: >
+            /* tslint:disable:max-line-length */
+
+
+            /**
+             * NOTE: THIS IS AN AUTO-GENERATED FILE. DO NOT MODIFY IT DIRECTLY.
+             */
+      - typescript
+      - typescript-operations
+      - typescript-apollo-angular
+      - fragment-matcher
+    config:
+      exportFragmentSpreadSubTypes: true
