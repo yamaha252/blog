@@ -1,10 +1,9 @@
 import {Injectable} from '@angular/core';
-import {ArticleCreateModule} from './article-create.module';
 import {ArticleAddGQL} from '../../graphql/graphql.generated';
 import {map} from 'rxjs/operators';
 
 @Injectable({
-  providedIn: ArticleCreateModule
+  providedIn: 'root'
 })
 export class ArticleCreateService {
 
