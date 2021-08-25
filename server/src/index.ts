@@ -73,6 +73,20 @@ const resolvers: Resolvers = {
       };
       comments.push(commentNew);
       return new CommentType(commentNew);
+    },
+
+    commentDelete(parent, {commentId}) {
+      const commentIndex = comments.findIndex(c => c.id === commentId);
+      const comment = comments[commentIndex];
+      if (!comment) {
+        throw new Error('Comment not found');
+      }
+      const article = articles.find(a => a.id === comment.articleId);
+      if (!article) {
+        throw new Error('Article of the comment not found');
+      }
+      delete comments[commentIndex];
+      return new ArticleType(article);
     }
   }
 };

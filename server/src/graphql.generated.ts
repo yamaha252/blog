@@ -97,6 +97,7 @@ export type Mutation = {
   logout?: Maybe<Scalars['Void']>;
   articleAdd: Article;
   commentAdd: Comment;
+  commentDelete: Article;
 };
 
 
@@ -114,6 +115,11 @@ export type MutationArticleAddArgs = {
 export type MutationCommentAddArgs = {
   articleId: Scalars['ID'];
   comment: CommentInput;
+};
+
+
+export type MutationCommentDeleteArgs = {
+  commentId: Scalars['ID'];
 };
 
 export type Query = {
@@ -302,6 +308,7 @@ export type MutationResolvers<ContextType = any, ParentType extends ResolversPar
   logout?: Resolver<Maybe<ResolversTypes['Void']>, ParentType, ContextType>;
   articleAdd?: Resolver<ResolversTypes['Article'], ParentType, ContextType, RequireFields<MutationArticleAddArgs, 'article'>>;
   commentAdd?: Resolver<ResolversTypes['Comment'], ParentType, ContextType, RequireFields<MutationCommentAddArgs, 'articleId' | 'comment'>>;
+  commentDelete?: Resolver<ResolversTypes['Article'], ParentType, ContextType, RequireFields<MutationCommentDeleteArgs, 'commentId'>>;
 };
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
