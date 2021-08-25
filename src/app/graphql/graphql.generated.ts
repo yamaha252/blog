@@ -98,7 +98,7 @@ export type Comments = {
 export type Mutation = {
   __typename?: 'Mutation';
   login: AuthCredentials;
-  logout: Scalars['Void'];
+  logout?: Maybe<Scalars['Void']>;
   articleAdd: Article;
   commentAdd: Comment;
 };
@@ -321,7 +321,7 @@ export type LoginMutation = {
 
 export type LogoutMutationVariables = Exact<{ [key: string]: never }>;
 
-export type LogoutMutation = { __typename?: 'Mutation'; logout: any };
+export type LogoutMutation = { __typename?: 'Mutation'; logout?: Maybe<any> };
 
 export const ArticleCommentsFragmentDoc = gql`
   fragment articleComments on Comments {

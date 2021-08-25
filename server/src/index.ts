@@ -45,10 +45,6 @@ const resolvers: Resolvers = {
       }
     },
 
-    logout() {
-      return null;
-    },
-
     articleAdd(parent, {article}, {auth}) {
       if (!auth) {
         throw new Error('Action is not permitted');

@@ -94,7 +94,7 @@ export type Comments = {
 export type Mutation = {
   __typename?: 'Mutation';
   login: AuthCredentials;
-  logout: Scalars['Void'];
+  logout?: Maybe<Scalars['Void']>;
   articleAdd: Article;
   commentAdd: Comment;
 };
@@ -299,7 +299,7 @@ export interface DateTimeScalarConfig extends GraphQLScalarTypeConfig<ResolversT
 
 export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
   login?: Resolver<ResolversTypes['AuthCredentials'], ParentType, ContextType, RequireFields<MutationLoginArgs, 'login' | 'password'>>;
-  logout?: Resolver<ResolversTypes['Void'], ParentType, ContextType>;
+  logout?: Resolver<Maybe<ResolversTypes['Void']>, ParentType, ContextType>;
   articleAdd?: Resolver<ResolversTypes['Article'], ParentType, ContextType, RequireFields<MutationArticleAddArgs, 'article'>>;
   commentAdd?: Resolver<ResolversTypes['Comment'], ParentType, ContextType, RequireFields<MutationCommentAddArgs, 'articleId' | 'comment'>>;
 };
