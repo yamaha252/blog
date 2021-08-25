@@ -11,7 +11,7 @@ import {environment} from '../environments/environment';
 import {NgxsDataPluginModule} from '@ngxs-labs/data';
 import {NGXS_DATA_STORAGE_PLUGIN} from '@ngxs-labs/data/storage';
 import {AuthModule} from './auth/auth.module';
-import { NavigationComponent } from './navigation/navigation.component';
+import {NavigationComponent} from './navigation/navigation.component';
 
 const routes: Routes = [
   {
