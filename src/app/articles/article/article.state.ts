@@ -3,6 +3,7 @@ import {ArticleAction} from './article.actions';
 import {Article} from './article';
 import {ArticleGQL} from '../../graphql/graphql.generated';
 import {map} from 'rxjs/operators';
+import {Injectable} from '@angular/core';
 
 export interface ArticleStateModel {
   article: Article | null;
@@ -14,6 +15,7 @@ export interface ArticleStateModel {
     article: null
   }
 })
+@Injectable()
 export class ArticleState {
 
   constructor(private articleGQL: ArticleGQL) {

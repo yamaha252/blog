@@ -3,6 +3,7 @@ import {ArticlesAction} from './articles.actions';
 import {ArticlesGQL} from '../graphql/graphql.generated';
 import {Article} from './articles';
 import {map} from 'rxjs/operators';
+import {Injectable} from '@angular/core';
 
 export interface ArticlesStateModel {
   articles: Article[];
@@ -16,6 +17,7 @@ export interface ArticlesStateModel {
     totalCount: 0,
   }
 })
+@Injectable()
 export class ArticlesState {
 
   static countOnPage = 20;
