@@ -1,1 +1,17 @@
-<p>articles works!</p>
+<ng-container *ngIf="articles$ | async as articles">
+  <h1>Articles</h1>
+  <a [routerLink]="['articles', article.id]" *ngFor="let article of articles">
+    <span>{{article.date | date}} - {{article.title}}</span>
+    <span>
+      <img [src]="article.imageUrl" alt="">
+    </span>
+    <span>{{article.text}}</span>
+    <span>Author: {{article.author.name}}</span>
+    <span>Comments: {{article.comments.totalCount}}</span>
+  </a>
+  <div>
+    <button type="button"
+            *ngFor="let page of pagesCount$ | async | numbers"
+            (click)="loadPage(page)">{{page}}</button>
+  </div>
+</ng-container>

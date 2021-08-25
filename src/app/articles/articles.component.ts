@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {ArticlesState, ArticlesStateModel} from './articles.state';
+import {Observable} from 'rxjs';
+import {Select, Store} from '@ngxs/store';
+import {ArticlesAction} from './articles.actions';
 
 @Component({
   selector: 'app-articles',
@@ -7,9 +11,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ArticlesComponent implements OnInit {
 
-  constructor() { }
+  @Select(ArticlesState.articles)
+  articles$: Observable<ArticlesStateModel['articles']>;
 
-  ngOnInit(): void {
+  @Select(ArticlesState.pagesCount)
+  pagesCount$: Observable<number>;
+
+  constructor(private store: Store) {
   }
 
+  ngOnInit() {
+  }
+
+  loadPage(page: number) {
+    this.store.dispatch(new ArticlesAction.Load(page));
+  }
 }
