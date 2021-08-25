@@ -32,3 +32,12 @@ query articleComments($id: ID! $limit: Int $offset: Int) {
     }
   }
 }
+
+mutation commentDelete($commentId: ID!) {
+  commentDelete(commentId: $commentId) {
+    id
+    comments {
+      ...articleComments
+    }
+  }
+}

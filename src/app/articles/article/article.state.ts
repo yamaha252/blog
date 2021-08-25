@@ -1,7 +1,7 @@
 import {State, Action, Selector, StateContext} from '@ngxs/store';
 import {ArticleAction} from './article.actions';
 import {Article} from './article';
-import {ArticleGQL} from '../../graphql/graphql.generated';
+import {ArticleGQL, CommentDeleteGQL} from '../../graphql/graphql.generated';
 import {map} from 'rxjs/operators';
 import {Injectable} from '@angular/core';
 
@@ -18,7 +18,8 @@ export interface ArticleStateModel {
 @Injectable()
 export class ArticleState {
 
-  constructor(private articleGQL: ArticleGQL) {
+  constructor(private articleGQL: ArticleGQL,
+              private commentDeleteGQL: CommentDeleteGQL) {
   }
 
   @Selector()
@@ -40,5 +41,25 @@ export class ArticleState {
       )
       .toPromise();
     ctx.patchState({article});
+  }
+
+  @Action(ArticleAction.RemoveComment)
+  async removeComment(ctx: StateContext<ArticleStateModel>, {commentId}: ArticleAction.RemoveComment) {
+    const {article} = ctx.getState();
+    const result = await this.commentDeleteGQL
+      .mutate({commentId})
+      .pipe(
+        map(result => result.data?.commentDelete)
+      )
+      .toPromise();
+
+    if (article && result) {
+      ctx.patchState({
+        article: {
+          ...article,
+          comments: result.comments
+        }
+      });
+    }
   }
 }

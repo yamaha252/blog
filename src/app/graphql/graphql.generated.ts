@@ -101,6 +101,7 @@ export type Mutation = {
   logout?: Maybe<Scalars['Void']>;
   articleAdd: Article;
   commentAdd: Comment;
+  commentDelete: Article;
 };
 
 export type MutationLoginArgs = {
@@ -115,6 +116,10 @@ export type MutationArticleAddArgs = {
 export type MutationCommentAddArgs = {
   articleId: Scalars['ID'];
   comment: CommentInput;
+};
+
+export type MutationCommentDeleteArgs = {
+  commentId: Scalars['ID'];
 };
 
 export type Query = {
@@ -205,6 +210,29 @@ export type ArticleCommentsQuery = {
   __typename?: 'Query';
   article: {
     __typename?: 'Article';
+    comments: {
+      __typename?: 'Comments';
+      totalCount: number;
+      items: Array<{
+        __typename?: 'Comment';
+        id: string;
+        date: any;
+        name: string;
+        text: string;
+      }>;
+    };
+  };
+};
+
+export type CommentDeleteMutationVariables = Exact<{
+  commentId: Scalars['ID'];
+}>;
+
+export type CommentDeleteMutation = {
+  __typename?: 'Mutation';
+  commentDelete: {
+    __typename?: 'Article';
+    id: string;
     comments: {
       __typename?: 'Comments';
       totalCount: number;
@@ -434,6 +462,31 @@ export class ArticleCommentsGQL extends Apollo.Query<
   ArticleCommentsQueryVariables
 > {
   document = ArticleCommentsDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
+export const CommentDeleteDocument = gql`
+  mutation commentDelete($commentId: ID!) {
+    commentDelete(commentId: $commentId) {
+      id
+      comments {
+        ...articleComments
+      }
+    }
+  }
+  ${ArticleCommentsFragmentDoc}
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class CommentDeleteGQL extends Apollo.Mutation<
+  CommentDeleteMutation,
+  CommentDeleteMutationVariables
+> {
+  document = CommentDeleteDocument;
 
   constructor(apollo: Apollo.Apollo) {
     super(apollo);
