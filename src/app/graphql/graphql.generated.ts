@@ -23,6 +23,7 @@ export type Scalars = {
   Int: number;
   Float: number;
   DateTime: any;
+  Void: any;
 };
 
 export type Article = {
@@ -96,6 +97,7 @@ export type Comments = {
 export type Mutation = {
   __typename?: 'Mutation';
   login: AuthCredentials;
+  logout: Scalars['Void'];
   articleAdd: Article;
   commentAdd: Article;
 };
@@ -287,6 +289,10 @@ export type LoginMutation = {
   login: { __typename?: 'AuthCredentials'; accessToken: string };
 };
 
+export type LogoutMutationVariables = Exact<{ [key: string]: never }>;
+
+export type LogoutMutation = { __typename?: 'Mutation'; logout: any };
+
 export const ArticleCommentsFragmentDoc = gql`
   fragment articleComments on Comments {
     totalCount
@@ -462,6 +468,25 @@ export class LoginGQL extends Apollo.Mutation<
   LoginMutationVariables
 > {
   document = LoginDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
+export const LogoutDocument = gql`
+  mutation logout {
+    logout
+  }
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class LogoutGQL extends Apollo.Mutation<
+  LogoutMutation,
+  LogoutMutationVariables
+> {
+  document = LogoutDocument;
 
   constructor(apollo: Apollo.Apollo) {
     super(apollo);

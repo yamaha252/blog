@@ -3,3 +3,7 @@ mutation login($login: String! $password: String!) {
     accessToken
   }
 }
+
+mutation logout {
+  logout
+}
