@@ -38,7 +38,7 @@ const resolvers: Resolvers = {
         throw new Error('Authentication failed');
       }
       return {
-        accessToken: jwt.sign({author: author.id}, jwt_secret, {
+        accessToken: jwt.sign({authorId: author.id}, jwt_secret, {
           expiresIn: '1y',
           subject: 'auth',
         }),
