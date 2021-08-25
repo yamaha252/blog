@@ -74,12 +74,13 @@ export type Comment = {
   email: Scalars['String'];
   url: Scalars['String'];
   text: Scalars['String'];
+  article: Article;
 };
 
 export type CommentInput = {
   name: Scalars['String'];
-  email: Scalars['String'];
-  url: Scalars['String'];
+  email?: Maybe<Scalars['String']>;
+  url?: Maybe<Scalars['String']>;
   text: Scalars['String'];
 };
 
@@ -95,7 +96,7 @@ export type Mutation = {
   login: AuthCredentials;
   logout: Scalars['Void'];
   articleAdd: Article;
-  commentAdd: Article;
+  commentAdd: Comment;
 };
 
 
@@ -282,6 +283,7 @@ export type CommentResolvers<ContextType = any, ParentType extends ResolversPare
   email?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   url?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   text?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  article?: Resolver<ResolversTypes['Article'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -299,7 +301,7 @@ export type MutationResolvers<ContextType = any, ParentType extends ResolversPar
   login?: Resolver<ResolversTypes['AuthCredentials'], ParentType, ContextType, RequireFields<MutationLoginArgs, 'login' | 'password'>>;
   logout?: Resolver<ResolversTypes['Void'], ParentType, ContextType>;
   articleAdd?: Resolver<ResolversTypes['Article'], ParentType, ContextType, RequireFields<MutationArticleAddArgs, 'article'>>;
-  commentAdd?: Resolver<ResolversTypes['Article'], ParentType, ContextType, RequireFields<MutationCommentAddArgs, 'articleId' | 'comment'>>;
+  commentAdd?: Resolver<ResolversTypes['Comment'], ParentType, ContextType, RequireFields<MutationCommentAddArgs, 'articleId' | 'comment'>>;
 };
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {

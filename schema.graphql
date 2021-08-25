@@ -12,7 +12,7 @@ type Mutation {
   login(login: String! password: String!): AuthCredentials!
   logout: Void!
   articleAdd(article: ArticleInput!): Article!
-  commentAdd(articleId: ID! comment: CommentInput!): Article!
+  commentAdd(articleId: ID! comment: CommentInput!): Comment!
 }
 
 type AuthCredentials {
@@ -27,8 +27,8 @@ input ArticleInput {
 
 input CommentInput {
   name: String!
-  email: String!
-  url: String!
+  email: String
+  url: String
   text: String!
 }
 
@@ -65,4 +65,5 @@ type Comment {
   email: String!
   url: String!
   text: String!
+  article: Article!
 }

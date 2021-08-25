@@ -79,12 +79,13 @@ export type Comment = {
   email: Scalars['String'];
   url: Scalars['String'];
   text: Scalars['String'];
+  article: Article;
 };
 
 export type CommentInput = {
   name: Scalars['String'];
-  email: Scalars['String'];
-  url: Scalars['String'];
+  email?: Maybe<Scalars['String']>;
+  url?: Maybe<Scalars['String']>;
   text: Scalars['String'];
 };
 
@@ -99,7 +100,7 @@ export type Mutation = {
   login: AuthCredentials;
   logout: Scalars['Void'];
   articleAdd: Article;
-  commentAdd: Article;
+  commentAdd: Comment;
 };
 
 export type MutationLoginArgs = {

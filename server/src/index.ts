@@ -6,21 +6,78 @@ import helmet from 'helmet';
 import 'graphql-import-node';
 import * as typeDefs from '../../schema.graphql';
 import {createServer} from 'http';
-import {ArticleModel, articles, articleToType, authors, comments} from './data';
+import {ArticleModel, articles, ArticleType, authors, CommentModel, comments, CommentType} from './data';
+import {Resolvers} from './graphql.generated';
+import jwt from 'jsonwebtoken';
 
-const resolvers = {
+const jwt_secret = 'myawesomejwtsecretkeyforablogprjectrighthere';
+
+const ID = () => Math.random().toString(36).substr(2, 9);
+
+const resolvers: Resolvers = {
   Query: {
     articles() {
-      const articlesResult = articles.map(article => articleToType(article));
+      const articlesResult = articles.map(article => new ArticleType(article));
       return {
         totalCount: articlesResult.length,
         items: articlesResult,
-      }
+      };
     },
     article(parent: any, {id}: {id: string}) {
-      const article = articles.find(a => a.id === id) as ArticleModel;
-      return articleToType(article);
+      const article = articles.find(a => a.id === id);
+      if (!article) {
+        throw new Error('No article found');
+      }
+      return new ArticleType(article);
     },
+  },
+  Mutation: {
+    login(parent, {login, password}) {
+      const author = authors.find(a => a.login === login && a.password === password);
+      if (!author) {
+        throw new Error('Authentication failed');
+      }
+      return {
+        accessToken: jwt.sign({author: author.id}, jwt_secret, {
+          expiresIn: '1y',
+          subject: 'auth',
+        }),
+      }
+    },
+
+    logout() {
+      return null;
+    },
+
+    articleAdd(parent, {article}, {auth}) {
+      if (!auth) {
+        throw new Error('Action is not permitted');
+      }
+      const articleNew: ArticleModel = {
+        id: ID(),
+        authorId: auth.authorId,
+        title: article.title,
+        date: new Date(),
+        imageUrl: article.imageUrl,
+        text: article.text,
+      };
+      articles.push(articleNew);
+      return new ArticleType(articleNew);
+    },
+
+    commentAdd(parent, {articleId, comment}) {
+      const commentNew: CommentModel = {
+        id: ID(),
+        articleId,
+        name: comment.name,
+        email: comment.email || '',
+        date: new Date(),
+        url: comment.url || '',
+        text: comment.text,
+      };
+      comments.push(commentNew);
+      return new CommentType(commentNew);
+    }
   }
 };
 
@@ -32,6 +89,18 @@ const schema = makeExecutableSchema({
 const apolloServer = new ApolloServer({
   schema,
   playground: true,
+  context: ({req}) => {
+    const token = (req.headers.authorization || '')?.split(' ').pop();
+    if (token) {
+      try {
+        return {
+          auth: jwt.verify(token, jwt_secret, {subject: 'auth'}),
+        };
+      } catch (e) {
+        throw new Error('Session is expired');
+      }
+    }
+  },
 });
 
 const app = express();
