@@ -9,7 +9,10 @@
       {{article.text}}
     </p>
     <div class="footer">
-      <span class="author">Author: {{article.author.name}}</span>
+      <span class="author">
+        Author:
+        <a href="#" (click)="openAuthor(article.author.id); $event.stopPropagation()">{{article.author.name}}</a>
+      </span>
       <span>Comments: {{article.comments.totalCount}}</span>
     </div>
   </a>

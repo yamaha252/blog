@@ -6,6 +6,7 @@ import {ArticlesResolver} from './articles.resolver';
 import {NgxsModule} from '@ngxs/store';
 import {ArticlesState} from './articles.state';
 import {NumbersPipe} from './numbers.pipe';
+import {AuthorModule} from './author/author.module';
 
 const routes: Routes = [
   {
@@ -35,6 +36,7 @@ const routes: Routes = [
     CommonModule,
     NgxsModule.forFeature([ArticlesState]),
     RouterModule.forChild(routes),
+    AuthorModule,
   ]
 })
 export class ArticlesModule {

@@ -6,7 +6,7 @@ import helmet from 'helmet';
 import 'graphql-import-node';
 import * as typeDefs from '../../schema.graphql';
 import {createServer} from 'http';
-import {ArticleModel, articles, ArticleType, authors, CommentModel, comments} from './data';
+import {ArticleModel, articles, ArticleType, authors, AuthorType, CommentModel, comments} from './data';
 import {Resolvers} from './graphql.generated';
 import jwt from 'jsonwebtoken';
 
@@ -30,6 +30,13 @@ const resolvers: Resolvers = {
       }
       return new ArticleType(article);
     },
+    author(parent, {id}) {
+      const author = authors.find(a => a.id === id);
+      if (!author) {
+        throw new Error('No author found');
+      }
+      return new AuthorType(author);
+    }
   },
   Mutation: {
     login(parent, {login, password}) {

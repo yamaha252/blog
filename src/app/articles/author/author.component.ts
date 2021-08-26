@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {Select} from '@ngxs/store';
+import {AuthorState} from './author.state';
+import {Observable} from 'rxjs';
+import {Author} from './author';
 
 @Component({
   selector: 'app-author',
@@ -7,9 +11,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AuthorComponent implements OnInit {
 
-  constructor() { }
+  @Select(AuthorState.author)
+  author$: Observable<Author>;
 
-  ngOnInit(): void {
+  constructor() {
   }
 
+  ngOnInit() {
+  }
 }

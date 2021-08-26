@@ -1,1 +1,14 @@
-<p>author works!</p>
+<ng-container *ngIf="author$ | async as author">
+  <mat-dialog-content>
+    <h1>{{author.name}}</h1>
+    <a href="#" class="article"
+       *ngFor="let article of author.articles.items"
+       [routerLink]="['article', article.id]" mat-dialog-close>
+      <div>{{article.date | date}}</div>
+      <div>{{article.title}}</div>
+    </a>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-flat-button mat-dialog-close>Close</button>
+  </mat-dialog-actions>
+</ng-container>
