@@ -122,7 +122,7 @@ export const articles: ArticleModel[] = [
     authorId: '1',
     date: new Date('2001-01-02'),
     title: 'Title of the article',
-    text: 'Text of the article',
+    text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aspernatur atque corporis dolor dolore doloremque, eius et excepturi illo ipsa molestias natus omnis, possimus quia quisquam sapiente totam veniam veritatis. Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aspernatur atque corporis dolor dolore doloremque, eius et excepturi illo ipsa molestias natus omnis, possimus quia quisquam sapiente totam veniam veritatis. Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aspernatur atque corporis dolor dolore doloremque, eius et excepturi illo ipsa molestias natus omnis, possimus quia quisquam sapiente totam veniam veritatis. Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aspernatur atque corporis dolor dolore doloremque, eius et excepturi illo ipsa molestias natus omnis, possimus quia quisquam sapiente totam veniam veritatis. Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aspernatur atque corporis dolor dolore doloremque, eius et excepturi illo ipsa molestias natus omnis, possimus quia quisquam sapiente totam veniam veritatis. Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aspernatur atque corporis dolor dolore doloremque, eius et excepturi illo ipsa molestias natus omnis, possimus quia quisquam sapiente totam veniam veritatis. Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aspernatur atque corporis dolor dolore doloremque, eius et excepturi illo ipsa molestias natus omnis, possimus quia quisquam sapiente totam veniam veritatis.Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aspernatur atque corporis dolor dolore doloremque, eius et excepturi illo ipsa molestias natus omnis, possimus quia quisquam sapiente totam veniam veritatis.',
     imageUrl: 'https://via.placeholder.com/150',
   },
   {
@@ -130,7 +130,7 @@ export const articles: ArticleModel[] = [
     authorId: '1',
     date: new Date('2001-01-04'),
     title: 'Title of the article',
-    text: 'Text of the article',
+    text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aspernatur atque corporis dolor dolore doloremque, eius et excepturi illo ipsa molestias natus omnis, possimus quia quisquam sapiente totam veniam veritatis.Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aspernatur atque corporis dolor dolore doloremque, eius et excepturi illo ipsa molestias natus omnis, possimus quia quisquam sapiente totam veniam veritatis.',
     imageUrl: 'https://via.placeholder.com/150',
   },
   {
@@ -138,7 +138,7 @@ export const articles: ArticleModel[] = [
     authorId: '2',
     date: new Date('2001-01-01'),
     title: 'Title of the article',
-    text: 'Text of the article',
+    text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aspernatur atque corporis dolor dolore doloremque, eius et excepturi illo ipsa molestias natus omnis, possimus quia quisquam sapiente totam veniam veritatis.',
     imageUrl: 'https://via.placeholder.com/150',
   }
 ];
@@ -175,7 +175,7 @@ export const comments: CommentModel[] = [
     name: 'Comment author',
     email: 'test@example.com',
     url: 'example.com',
-    text: 'Test comment',
+    text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aspernatur atque corporis dolor dolore doloremque, eius et excepturi illo ipsa molestias natus omnis, possimus quia quisquam sapiente totam veniam veritatis.',
   },
   {
     id: '3',
@@ -184,6 +184,6 @@ export const comments: CommentModel[] = [
     name: 'Comment author',
     email: 'test@example.com',
     url: 'example.com',
-    text: 'Test comment',
+    text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
   },
 ];

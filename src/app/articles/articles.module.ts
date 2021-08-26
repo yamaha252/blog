@@ -7,6 +7,7 @@ import {NgxsModule} from '@ngxs/store';
 import {ArticlesState} from './articles.state';
 import {NumbersPipe} from './numbers.pipe';
 import {AuthorModule} from './author/author.module';
+import { TextCropPipe } from './text-crop.pipe';
 
 const routes: Routes = [
   {
@@ -31,6 +32,7 @@ const routes: Routes = [
   declarations: [
     ArticlesComponent,
     NumbersPipe,
+    TextCropPipe,
   ],
   imports: [
     CommonModule,

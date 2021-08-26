@@ -6,7 +6,7 @@
       <img [src]="article.imageUrl" alt="">
     </div>
     <p>
-      {{article.text}}
+      {{article.text | textCrop}}
     </p>
     <div class="footer">
       <span class="author">
@@ -22,4 +22,3 @@
             (click)="loadPage(page)">{{page}}</button>
   </div>
 </ng-container>
-
