@@ -87,7 +87,7 @@ const resolvers: Resolvers = {
     },
 
     commentDelete(parent, {commentId}) {
-      const commentIndex = comments.findIndex(c => c.id === commentId);
+      const commentIndex = comments.findIndex(c => c?.id === commentId);
       const comment = comments[commentIndex];
       if (!comment) {
         throw new Error('Comment not found');
